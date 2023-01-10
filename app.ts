@@ -1,5 +1,8 @@
 import cors from 'cors';
 import express, { Application, Request } from "express";
+import { PORT } from './config';
+import { IRoute } from './interfaces/route.interface';
+import errorMiddleware from './middlewares/error.middleware';
 import morganMiddleware from './middlewares/morgan.middleware';
 import { logger } from './utils/logger';
 
@@ -8,9 +11,9 @@ export default class App {
     public app: Application;
     public port: string | number;
 
-    constructor(routes: any[]) {
+    constructor(routes: IRoute[]) {
         this.app = express();
-        this.port = 8000;
+        this.port = PORT || 8000;
         this.initializeMiddlewares()
         this.initializeRoutes(routes)
     }
@@ -28,10 +31,14 @@ export default class App {
         this.app.use(morganMiddleware)
     }
 
-    private initializeRoutes(routes: any[]): void {
+    private initializeRoutes(routes: IRoute[]): void {
         routes.forEach(route => {
-            this.app.use("/api/v1", route.route)
+            this.app.use("/api/v1", route.router)
         })
     }  
+
+    private initializeErrorHandling() {
+        this.app.use(errorMiddleware)
+    }
 
 }

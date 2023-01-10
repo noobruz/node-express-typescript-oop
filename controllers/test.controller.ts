@@ -1,10 +1,12 @@
 import { NextFunction, Request, Response } from "express"
-import { testService } from "../services/test.service"
+import TestService from "../services/test.service"
 
-const testController = (req: Request, res: Response, next: NextFunction) => {
+export default class TestController {
 
-    res.send(testService())
+    public testServices: TestService = new TestService()
+
+    public getHello (request: Request, response: Response, next: NextFunction) {
+        response.status(200).send(this.testServices.sayHello("Dave"))
+    }
 
 }
-
-export { testController }

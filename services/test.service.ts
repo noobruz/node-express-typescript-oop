@@ -1,5 +1,5 @@
-const testService = () => {
-    return "Test"
+export default class TestService {
+    public sayHello(name: string): string {
+        return `Hello ${name}`
+    }
 }
-
-export { testService }
