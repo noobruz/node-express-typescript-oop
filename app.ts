@@ -16,6 +16,7 @@ export default class App {
         this.port = PORT || 8000;
         this.initializeMiddlewares()
         this.initializeRoutes(routes)
+        this.initializeErrorHandling()
     }
 
     public listen(): void {
