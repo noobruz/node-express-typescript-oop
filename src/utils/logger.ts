@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync } from "fs";
 import path, { join } from "path";
 import winston from "winston";
-import { DB_URL, LOG_DIR } from "../config";
+import { DB_URL, LOG_DIR } from "../../config";
 import { fileURLToPath } from 'url';
 
 // const __filename = fileURLToPath(import.meta.url);

@@ -6,5 +6,6 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true, 
     "outDir": "./dist",
+    "rootDir": "src"
   }
 }
