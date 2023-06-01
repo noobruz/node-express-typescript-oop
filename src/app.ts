@@ -1,10 +1,11 @@
 import cors from 'cors';
+import "express-async-errors"
 import express, { Application, Request } from "express";
 import { PORT } from './config';
 import { IRoute } from './interfaces/route.interface';
-import errorMiddleware from './middlewares/error.middleware';
 import morganMiddleware from './middlewares/morgan.middleware';
 import { logger } from './utils/logger';
+import ErrorMiddleWare from './middlewares/error.middleware';
 
 export default class App {
 
@@ -39,7 +40,7 @@ export default class App {
     }  
 
     private initializeErrorHandling() {
-        this.app.use(errorMiddleware)
+        this.app.use(ErrorMiddleWare.handleErrors)
     }
 
 }
